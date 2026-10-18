@@ -1,0 +1,354 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hero-foreground: #ffffff;
+  --hero-muted: #d5ece8;
+  --hero-surface: #1e3b38;
+  --shadow-food: 0 12px 32px rgba(23, 42, 40, 0.07);
+  --radius: 1rem;
+  --background: #ffffff;
+  --foreground: #1c2b29;
+  --card: #ffffff;
+  --card-foreground: #1c2b29;
+  --popover: #ffffff;
+  --popover-foreground: #1c2b29;
+  --primary: #1f6b65;
+  --primary-foreground: #ffffff;
+  --secondary: #edf6f5;
+  --secondary-foreground: #1b5b56;
+  --muted: #f3f7f7;
+  --muted-foreground: #677b78;
+  --accent: #ea580c;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5eceb;
+  --input: #e5eceb;
+  --ring: #268079;
+}
+
+@layer base {
+  body {
+    letter-spacing: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  h1, h2, h3, .brand-name {
+    letter-spacing: 0;
+    font-family: "Manrope", sans-serif;
+  }
+}
+
+.site-width {
+  width: min(1040px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  padding-block: 22px;
+}
+
+.brand-name {
+  font-size: 25px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.brand-mark {
+  background: var(--primary);
+  width: 38px;
+  height: 38px;
+  color: var(--primary-foreground);
+  border-radius: 10px;
+  place-items: center;
+  display: grid;
+  flex-shrink: 0;
+}
+
+.box-label {
+  color: var(--muted-foreground);
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  display: flex;
+  background-color: var(--secondary);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  transition: all 0.2s;
+}
+
+.box-label strong {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.home-hero {
+  background: var(--hero-surface);
+  height: 370px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero > img {
+  object-fit: cover;
+  object-position: center 52%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.hero-copy {
+  height: 100%;
+  color: var(--hero-foreground);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-copy h1 {
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.hero-copy p {
+  color: var(--hero-muted);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.menu-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-food);
+  border-radius: 12px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(23, 42, 40, 0.12);
+}
+
+.menu-photo {
+  aspect-ratio: 1.3;
+  object-fit: cover;
+  width: 100%;
+  display: block;
+}
+
+.order-shell {
+  width: min(600px, 100% - 40px);
+  margin-inline: auto;
+  padding-block: 38px 48px;
+}
+
+.page-heading {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.page-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  margin-top: 40px;
+  padding-block: 22px;
+  font-size: 13px;
+}
+
+.cart-dock {
+  z-index: 50;
+  width: min(560px, 100% - 40px);
+  box-shadow: 0 16px 36px rgba(23, 42, 40, 0.18);
+  bottom: 20px;
+  margin-inline: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.checkout-enter {
+  animation: 0.32s ease-out both checkout-enter;
+}
+
+.checkout-loading {
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 420px;
+  animation: 0.3s ease-out both checkout-enter;
+  display: flex;
+}
+
+.burger-loader {
+  place-items: center;
+  width: 164px;
+  height: 164px;
+  display: grid;
+  position: relative;
+}
+
+.burger-loader-image {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 136px;
+  height: 136px;
+  animation: 1.8s ease-in-out infinite burger-float;
+}
+
+.burger-loader-ring {
+  border: 4px solid var(--secondary);
+  border-top-color: var(--accent);
+  border-right-color: var(--primary);
+  border-radius: 50%;
+  animation: 1.4s linear infinite checkout-spin;
+  position: absolute;
+  inset: 0;
+}
+
+.loading-dots {
+  gap: 7px;
+  margin-top: 24px;
+  display: flex;
+}
+
+.loading-dots span {
+  background: var(--primary);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  animation: 1s ease-in-out infinite burger-float;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.payment-shell {
+  width: min(900px, 100% - 40px);
+  margin-inline: auto;
+  padding-block: 28px;
+}
+
+.payment-frame-wrap {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  height: max(620px, 100dvh - 235px);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-frame {
+  opacity: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.35s;
+}
+
+.payment-frame-ready {
+  opacity: 1;
+}
+
+.payment-loading {
+  pointer-events: none;
+  place-items: center;
+  display: grid;
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes checkout-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes burger-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes checkout-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .site-width {
+    width: calc(100% - 32px);
+  }
+  .site-header {
+    padding-block: 16px;
+  }
+  .brand-name {
+    font-size: 22px;
+  }
+  .box-label {
+    gap: 6px;
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+  .box-label span {
+    max-width: 210px;
+  }
+  .home-hero {
+    height: 385px;
+  }
+  .home-hero > img {
+    object-position: 38% center;
+    opacity: 0.65;
+  }
+  .hero-copy h1 {
+    font-size: 46px;
+  }
+  .hero-copy p {
+    font-size: 16px;
+  }
+  .page-heading {
+    font-size: 28px;
+  }
+  .order-shell {
+    padding-top: 28px;
+  }
+  .menu-photo {
+    aspect-ratio: 1.45;
+  }
+}
